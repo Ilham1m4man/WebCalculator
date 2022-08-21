@@ -7,7 +7,7 @@ function checkForStorage() {
 function putHistory(data) {
     if (checkForStorage()) {
         let historyData = null;
-        if (localStorage.getItem(CACHE_KEY === null)) {
+        if (localStorage.getItem(CACHE_KEY) === null) {
             historyData = [];
         } else {
             historyData = JSON.parse(localStorage.getItem(CACHE_KEY));
@@ -33,12 +33,10 @@ function showHistory() {
 
 function renderHistory() {
     const historyData = showHistory();
-    let historyList = document.querySelector('#historyList');
-
-    // Selalu hapus konten HTML pada elemen historyList agar tidak menampilkan data ganda
+    let historyList = document.querySelector("#historyList");
     historyList.innerHTML = "";
 
-    for (const history of historyData) {
+    for (let history of historyData) {
         let row = document.createElement('tr');
         row.innerHTML = "<td>" + history.firstNumber + "</td>";
         row.innerHTML += "<td>" + history.operator + "</td>";
@@ -47,6 +45,6 @@ function renderHistory() {
 
         historyList.appendChild(row);
     }
-
-    renderHistory();
 }
+
+renderHistory();
